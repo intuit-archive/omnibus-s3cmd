@@ -1,18 +1,18 @@
-## omnibus-aws_cli
+## omnibus-s3cmd
 
-This contains the skelton for building Omnibus aws_cli package.
+This contains the skelton for building Omnibus intu-s3cmd package.
 
 ## Build
 
-To build the aws_cli RPM on the local system:
+To build the s3cmd RPM on the local system:
 
-    bundle exec rake projects:aws_cli
+    bundle exec rake projects:intu-s3cmd
 
 ## Continuous Integration
 
-Omnibus-aws_cli leverages knife-ec2 to create an instance which is used to build the RPM during CI. Over view of CI:
+Omnibus-s3cmd leverages knife-ec2 to create an instance which is used to build the RPM during CI. Over view of CI:
 
-* Clone omnibus-aws_cli on CI instance and execute ci_setup.sh
+* Clone omnibus-s3cmd on CI instance and execute ci_setup.sh
 * The ci_setup script uses knife-ec2 to create an ec2 instance
 * The instance is bootstraped using the omnibus.rb bootstrap script.
 * The git repo is cloned on the newly created build box.

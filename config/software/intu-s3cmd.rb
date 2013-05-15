@@ -1,6 +1,7 @@
 name "intu-s3cmd"
 version "1.5.0-alpha3"
 
+#dependency "rsync"
 dependencies ["openssl", "python", "virtualenv"]
 
 source :url => "https://github.com/s3tools/s3cmd/archive/v1.5.0-alpha3.zip",

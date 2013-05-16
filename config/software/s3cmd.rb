@@ -1,4 +1,4 @@
-name "intu-s3cmd"
+name "s3cmd"
 version "1.5.0-alpha3"
 
 #dependency "rsync"

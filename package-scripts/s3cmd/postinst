@@ -3,6 +3,7 @@
 # Perform necessary s3cmd setup steps
 # after package is installed.
 #
+DEST_DIR=/opt/s3cmd
 
 PROGNAME=$(basename $0)
 
@@ -11,7 +12,7 @@ function error_exit
   echo "${PROGNAME}: ${1:-"Unknown Error"}" 1>&2
   exit 1
 }
-
+ln -sf $DEST_DIR/bin/s3cmd /usr/bin || error_exit "Cannot link s3cmd to /usr/bin"
 echo "Thank you for installing s3cmd!"
 
 exit 0

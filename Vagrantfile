@@ -9,7 +9,7 @@ end
 
 host_project_path = File.expand_path("..", __FILE__)
 guest_project_path = "/home/vagrant/#{File.basename(host_project_path)}"
-project_name = "intu-s3cmd"
+project_name = "s3cmd"
 
 Vagrant.configure("2") do |config|
 

@@ -32,20 +32,11 @@ cd /var/tmp/omnibus-s3cmd
 # Install Bundle
 bundle install --quiet
 
-<<<<<<< Updated upstream
 # Build s3cmd RPM
 bin/omnibus build project s3cmd
 
-
 # Upload RPM to Omnibus package bucket
 for rpm in $(ls -d ./pkg/s3cmd*.rpm); do
-=======
-# Build s3cmd RPM
-bundle exec rake projects:s3cmd
-
-# Upload RPM to Omnibus package bucket
-for rpm in $(ls -d /var/cache/omnibus/pkg/s3cmd*.rpm); do
->>>>>>> Stashed changes
   echo "Upload $rpm to s3://intu-omnibus-packages-us-west-1"
   s3cmd --no-progress sync $rpm s3://intu-omnibus-packages-us-west-1/
 done

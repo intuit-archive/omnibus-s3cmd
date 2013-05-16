@@ -4,7 +4,7 @@
 # after package is uninstalled.
 #
 
-rm -rf /usr/bin/s3cmd
+rm -f /usr/bin/s3cmd
 
 echo "s3cmd has been uninstalled!"
 

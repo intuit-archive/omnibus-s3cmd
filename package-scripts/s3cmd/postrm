@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+# Perform necessary s3cmd removal steps
+# after package is uninstalled.
+#
+
+rm -rf /usr/bin/s3cmd
+
+echo "s3cmd has been uninstalled!"
+
+exit 0

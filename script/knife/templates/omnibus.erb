@@ -32,12 +32,11 @@ cd /var/tmp/omnibus-s3cmd
 # Install Bundle
 bundle install --quiet
 
-# Build intu-s3cmd RPM
-bin/omnibus build project intu-s3cmd
-
+# Build s3cmd RPM
+bin/omnibus build project s3cmd
 
 # Upload RPM to Omnibus package bucket
-for rpm in $(ls -d ./pkg/intu-s3cmd*.rpm); do
+for rpm in $(ls -d ./pkg/s3cmd*.rpm); do
   echo "Upload $rpm to s3://intu-omnibus-packages-us-west-1"
   s3cmd --no-progress sync $rpm s3://intu-omnibus-packages-us-west-1/
 done

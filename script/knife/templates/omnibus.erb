@@ -18,7 +18,7 @@ secret_key = <%= "#{ENV['AWS_SECRET_ACCESS_KEY']}" %>
 EOS
 
 # Install Required RPMs
-yum install -y --quiet intu-ruby git s3cmd rpm-build
+yum install -y --quiet intu-ruby git rpm-build
 
 # Install bundler gem
 gem install bundler -v 1.2.2 --no-ri --no-rdoc --quiet

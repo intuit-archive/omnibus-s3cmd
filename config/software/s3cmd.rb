@@ -10,5 +10,5 @@ source :url => "https://github.com/s3tools/s3cmd/archive/v1.5.0-alpha3.zip",
 relative_path "s3cmd-1.5.0-alpha3"
 
 build do
-  command ". #{install_dir}/bin/activate; pip install --install-option='--prefix=#{install_dir}' s3cmd"
+  command ". #{install_dir}/bin/activate; python setup.py install"
 end

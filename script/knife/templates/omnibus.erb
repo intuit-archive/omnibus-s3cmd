@@ -18,7 +18,7 @@ secret_key = <%= "#{ENV['AWS_SECRET_ACCESS_KEY']}" %>
 EOS
 
 # Install Required RPMs
-yum install -y --quiet intu-ruby git rpm-build
+yum install -y --quiet intu-ruby git s3cmd rpm-build
 
 # Install bundler gem
 gem install bundler -v 1.2.2 --no-ri --no-rdoc --quiet
@@ -38,6 +38,6 @@ bin/omnibus build project s3cmd
 # Upload RPM to Omnibus package bucket
 for rpm in $(ls -d ./pkg/s3cmd*.rpm); do
   echo "Upload $rpm to s3://intu-omnibus-packages-us-west-1"
-  /opt/s3cmd/bin/s3cmd --no-progress sync $rpm s3://intu-omnibus-packages-us-west-1/
+  s3cmd --no-progress sync $rpm s3://intu-omnibus-packages-us-west-1/
 done
 '

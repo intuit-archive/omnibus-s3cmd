@@ -15,12 +15,12 @@ To build the s3cmd RPM on the local system:
         export iteration=1
         export md5_checksum=3aa1a6af0bc9ae46e39c2fd47f5a73f1
 
-	yum install -y --quiet intu-ruby git s3cmd rpm-build  python-setuptools
-	gem install bundler -v 1.2.2 --no-ri --no-rdoc --quiet
-	git clone --quiet https://github.com/intuit/omnibus-s3cmd.git /var/tmp/omnibus-s3cmd
-	cd /var/tmp/omnibus-s3cmd
-	bundle install --quiet --binstubs
-	bin/omnibus build project s3cmd
+		yum install -y --quiet intu-ruby git s3cmd rpm-build  python-setuptools
+		gem install bundler -v 1.2.2 --no-ri --no-rdoc --quiet
+		git clone --quiet https://github.com/intuit/omnibus-s3cmd.git /var/tmp/omnibus-s3cmd
+		cd /var/tmp/omnibus-s3cmd
+		bundle install --quiet --binstubs
+		bin/omnibus build project s3cmd
 
 ## Continuous Integration
 

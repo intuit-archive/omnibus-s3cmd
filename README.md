@@ -1,102 +1,43 @@
-# s3cmd Omnibus project
+## omnibus-s3cmd 
 
-This project creates full-stack platform-specific packages for
-`s3cmd`!
+This contains the skeleton for building Omnibus s3cmd  package.
 
-## Installation
+## Build
 
-We'll assume you have Ruby 1.9+ and Bundler installed. First ensure all
-required gems are installed and ready to use:
+To build the s3cmd RPM on the local system:
 
-```shell
-$ bundle install --binstubs
-```
+* The environment variables for version and iteration must be set,
+  the version will correspond to gem version being pulled down
+  and will result in the package version being created. Iteration only corresponds
+  to the rpm version iteration.
 
-## Usage
+        export version=1.5.0-alpha3
+        export iteration=1
+        export md5_checksum=3aa1a6af0bc9ae46e39c2fd47f5a73f1
 
-### Build
+	yum install -y --quiet intu-ruby git s3cmd rpm-build  python-setuptools
+	gem install bundler -v 1.2.2 --no-ri --no-rdoc --quiet
+	git clone --quiet https://github.com/intuit/omnibus-s3cmd.git /var/tmp/omnibus-s3cmd
+	cd /var/tmp/omnibus-s3cmd
+	bundle install --quiet --binstubs
+	bin/omnibus build project s3cmd
 
-You create a platform-specific package using the `build project` command:
+## Continuous Integration
 
-```shell
-$ bin/omnibus build project s3cmd
-```
+omnibus-s3cmd leverages knife-ec2 to create an instance which is used to build the RPM during CI. Over view of CI:
 
-The platform/architecture type of the package created will match the platform
-where the `build project` command is invoked. So running this command on say a
-MacBook Pro will generate a Mac OS X specific package. After the build
-completes packages will be available in `pkg/`.
+* Clone omnibus-s3cmd on CI instance and execute ./scripts/ci_setup
+* The ci_setup script uses knife-ec2 to create an ec2 instance
+* The instance is bootstraped using the omnibus.rb bootstrap script.
+* The git repo is cloned on the newly created build box.
+* The necessary omnibus tools are installed.
+* The RPM is built via omnibus.
+* The RPM is uploaded to S3. Any RPMs with the same name, version and build iteration are replaced.
+* The ci_setup script executes cleanup.rb to destroy any build boxes.
 
-### Clean
+## Requirements
 
-You can clean up all temporary files generated during the build process with
-the `clean` command:
-
-```shell
-$ bin/omnibus clean
-```
-
-Adding the `--purge` purge option removes __ALL__ files generated during the
-build including the project install directory (`/opt/s3cmd`) and
-the package cache directory (`/var/cache/omnibus/pkg`):
-
-```shell
-$ bin/omnibus clean --purge
-```
-
-### Help
-
-Full help for the Omnibus command line interface can be accessed with the
-`help` command:
-
-```shell
-$ bin/omnibus help
-```
-
-## Vagrant-based Virtualized Build Lab
-
-Every Omnibus project ships will a project-specific
-[Berksfile](http://berkshelf.com/) and [Vagrantfile](http://www.vagrantup.com/)
-that will allow you to build your projects on the following platforms:
-
-* CentOS 5 64-bit
-* CentOS 6 64-bit
-* Ubuntu 10.04 64-bit
-* Ubuntu 11.04 64-bit
-* Ubuntu 12.04 64-bit
-
-Please note this build-lab is only meant to get you up and running quickly;
-there's nothing inherent in Omnibus that restricts you to just building CentOS
-or Ubuntu packages. See the Vagrantfile to add new platforms to your build lab.
-
-The only requirements for standing up this virtualized build lab are:
-
-* VirtualBox - native packages exist for most platforms and can be downloaded
-from the [VirtualBox downloads page](https://www.virtualbox.org/wiki/Downloads).
-* Vagrant 1.2.1+ - native packages exist for most platforms and can be downloaded
-from the [Vagrant downloads page](http://downloads.vagrantup.com/).
-
-The [vagrant-berkshelf](https://github.com/RiotGames/vagrant-berkshelf) and
-[vagrant-omnibus](https://github.com/schisamo/vagrant-omnibus) Vagrant plugins
-are also required and can be installed easily with the following commands:
-
-```shell
-$ vagrant plugin install vagrant-berkshelf
-$ vagrant plugin install vagrant-omnibus
-```
-
-Once the pre-requisites are installed you can build your package across all
-platforms with the following command:
-
-```shell
-$ vagrant up
-```
-
-If you would like to build a package for a single platform the command looks like this:
-
-```shell
-$ vagrant up PLATFORM
-```
-
-The complete list of valid platform names can be viewed with the
-`vagrant status` command.
+* AWS account with access to upload to S3 bucket and manage EC2 instances.
+* Credentials set as AWS_SECRET_ACCESS_KEY and AWS_ACCESS_KEY_ID
+* Ruby version 1.9.2 or higher
+* Access to the AMI listed in the file `script/knife/config/knife.rb`

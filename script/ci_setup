@@ -15,7 +15,7 @@ function clean_up_and_exit {
 }
 
 # Set Ruby / Gemset
-rvm use 1.9.3-p327@omnibus-s3cmd --create
+rvm use 2.0.0-p247@omnibus-s3cmd --create
 
 # Install knife ec2
 gem install knife-ec2 --no-ri --no-rdoc --quiet

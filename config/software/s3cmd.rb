@@ -5,7 +5,7 @@ checksum = ENV['md5_checksum']
 dependencies ["openssl", "python", "virtualenv"]
 
 source :url => "https://github.com/s3tools/s3cmd/archive/v#{version}.zip",
-       :md5 => "#{check_checksum}"
+       :md5 => "#{checksum}"
 
 relative_path "s3cmd-#{version}"
 

@@ -20,7 +20,7 @@ EOS
 # Set version for build
 export version=<%= "#{ENV['version']}" %>
 export iteration=<%= "#{ENV['iteration']}" %>
-export iteration=<%= "#{ENV['md5_checksum']}" %>
+export checksum=<%= "#{ENV['checksum']}" %>
 
 # Install Required RPMs
 yum install -y --quiet intu-ruby git s3cmd rpm-build

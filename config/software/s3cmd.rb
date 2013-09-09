@@ -1,14 +1,13 @@
 name "s3cmd"
-version "1.5.0-alpha3"
+version ENV['version']
 
-#dependency "rsync"
 dependencies ["openssl", "python", "virtualenv"]
 
-source :url => "https://github.com/s3tools/s3cmd/archive/v1.5.0-alpha3.zip",
-       :md5 => "3aa1a6af0bc9ae46e39c2fd47f5a73f1"
+source :url => "https://github.com/s3tools/s3cmd/archive/v#{version}.zip",
+       :md5 => "#{ENV['checksum']}"
 
-relative_path "s3cmd-1.5.0-alpha3"
+relative_path "s3cmd-#{version}"
 
 build do
-  command ". #{install_dir}/bin/activate; python setup.py install"
+  command "source #{install_dir}/bin/activate; python setup.py install"
 end

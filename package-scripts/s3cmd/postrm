@@ -5,6 +5,7 @@
 #
 
 rm -f /usr/bin/s3cmd
+rm -rf /opt/s3cmd
 
 echo "s3cmd has been uninstalled!"
 

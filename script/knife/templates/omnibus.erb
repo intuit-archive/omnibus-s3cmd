@@ -17,6 +17,11 @@ access_key = <%= "#{ENV['AWS_ACCESS_KEY_ID']}" %>
 secret_key = <%= "#{ENV['AWS_SECRET_ACCESS_KEY']}" %>
 EOS
 
+# Set version for build
+export version=<%= "#{ENV['version']}" %>
+export iteration=<%= "#{ENV['iteration']}" %>
+export checksum=<%= "#{ENV['checksum']}" %>
+
 # Install Required RPMs
 yum install -y --quiet intu-ruby git s3cmd rpm-build
 
@@ -30,7 +35,7 @@ git clone --quiet https://github.com/intuit/omnibus-s3cmd.git /var/tmp/omnibus-s
 cd /var/tmp/omnibus-s3cmd
 
 # Install Bundle
-bundle install --quiet
+bundle install --quiet --binstubs
 
 # Build s3cmd RPM
 bin/omnibus build project s3cmd

@@ -34,6 +34,12 @@ git clone --quiet https://github.com/intuit/omnibus-s3cmd.git /var/tmp/omnibus-s
 # Change directory to build cloned repo
 cd /var/tmp/omnibus-s3cmd
 
+# Use appropriate build branch if passed via Jenkins UI
+branch=<%= "#{ENV['GIT_BRANCH']}" %>
+if [ -n "$branch" ];then
+  git checkout --track origin/${branch}
+fi
+
 # Install Bundle
 bundle install --quiet --binstubs
 

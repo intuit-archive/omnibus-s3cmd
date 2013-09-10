@@ -1,5 +1,5 @@
 name            "s3cmd"
-maintainer      "chad_cloes@intuit.com"
+maintainer      "Intuit, Inc."
 homepage        "https://github.com/intuit/omnibus-s3cmd"
 
 replaces        "s3cmd"

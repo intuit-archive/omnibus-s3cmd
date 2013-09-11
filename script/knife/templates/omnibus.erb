@@ -36,7 +36,7 @@ cd /var/tmp/omnibus-s3cmd
 
 # Use appropriate build branch if passed via Jenkins UI
 branch=<%= "#{ENV['GIT_BRANCH']}" %>
-if [ -n "$branch" ];then
+if [ -n "$branch" ] && [ "$branch" != "master" ];then
   git checkout --track origin/${branch}
 fi
 

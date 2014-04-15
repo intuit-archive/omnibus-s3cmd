@@ -6,6 +6,7 @@
 # NOTE: The RPM which is produced will overwrite the RPM on the S3 bucket on successful run
 export version=1.0.1
 export iteration=2
+export checksum=9393ecc424f64926e503a39af334d325
 
 # Remove Gemfile.lock if it exists
 if [ -f Gemfile.lock ]; then

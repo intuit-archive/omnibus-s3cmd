@@ -1,5 +1,7 @@
 ## omnibus-s3cmd 
 
+**!!! This project has been deprecated. We recommend you fork it or look for an alternative solution. !!!**
+
 This contains the skeleton for building Omnibus s3cmd  package.
 
 ## Build
